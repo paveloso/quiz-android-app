@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/audiowide"
+        android:text="@string/title_name"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="394dp"
+        android:layout_height="247dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="32dp"
+        app:cardBackgroundColor="@color/cardview_background"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="7dp"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_id">
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="here we are going to place out question from the data feed"
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button_true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/button_color"
+        android:text="@string/true_text"
+        app:layout_constraintStart_toEndOf="@+id/prev_button"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <Button
+        android:id="@+id/button_false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/button_color"
+        android:text="@string/false_text"
+        app:layout_constraintStart_toEndOf="@+id/button_true"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <ImageButton
+        android:id="@+id/prev_button"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/button_color"
+        android:contentDescription="@string/previous_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:srcCompat="@android:drawable/ic_media_rew" />
+
+    <ImageButton
+        android:id="@+id/button_next"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/button_color"
+        android:contentDescription="@string/next_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:srcCompat="@android:drawable/ic_media_ff" />
+
+    <TextView
+        android:id="@+id/counter_text"
+        android:layout_width="125dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="end"
+        android:text="@string/counter_text"
+        android:textAlignment="viewEnd"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
