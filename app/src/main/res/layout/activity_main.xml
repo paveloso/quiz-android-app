@@ -44,50 +44,50 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button_true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/button_color"
-        android:text="@string/true_text"
-        app:layout_constraintStart_toEndOf="@+id/prev_button"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <Button
         android:id="@+id/button_false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:background="@color/button_color"
         android:text="@string/false_text"
         app:layout_constraintStart_toEndOf="@+id/button_true"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <ImageButton
-        android:id="@+id/prev_button"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+    <Button
+        android:id="@+id/button_true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="80dp"
         android:background="@color/button_color"
-        android:contentDescription="@string/previous_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:srcCompat="@android:drawable/ic_media_rew" />
+        android:text="@string/true_text"
+        app:layout_constraintStart_toEndOf="@+id/prev_button"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <ImageButton
         android:id="@+id/button_next"
         android:layout_width="40dp"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         android:background="@color/button_color"
         android:contentDescription="@string/next_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:srcCompat="@android:drawable/ic_media_ff" />
+
+    <ImageButton
+        android:id="@+id/prev_button"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:background="@color/button_color"
+        android:contentDescription="@string/previous_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:srcCompat="@android:drawable/ic_media_rew" />
 
     <TextView
         android:id="@+id/counter_text"
@@ -101,4 +101,43 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/bestscore_text"
+        android:layout_width="77dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:gravity="start"
+        android:text="@string/best_score"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_id"
+        app:layout_constraintVertical_bias="0.724" />
+
+    <TextView
+        android:id="@+id/bestscore_result"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/bestscore_result"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/bestscore_text"
+        app:layout_constraintTop_toBottomOf="@+id/title_id"
+        app:layout_constraintVertical_bias="0.724" />
+
+    <TextView
+        android:id="@+id/current_score_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/current_score"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

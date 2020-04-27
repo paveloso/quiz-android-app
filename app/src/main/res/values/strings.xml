@@ -8,4 +8,8 @@
     <string name="counter_text">0 out of 0</string>
     <string name="wrong_text">Wrong!</string>
     <string name="correct_text">Correct!</string>
+    <string name="best_score">Best score:</string>
+    <string name="bestscore_result">0</string>
+    <string name="BEST_SCORE_RESULT_KEY">BEST_SCORE_RESULT_KEY</string>
+    <string name="current_score">Current score: 0</string>
 </resources>

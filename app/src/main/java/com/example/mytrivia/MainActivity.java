@@ -3,6 +3,8 @@ package com.example.mytrivia;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -22,20 +24,37 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView counterText, questionText;
+    private static String BEST_SCORE = "best_score";
+    private static int CORRECT_ANSWER_PRICE = 100;
+
+    private TextView counterText, questionText, bestscoreResultText, currentScoreText;
     private Button trueButton, falseButton;
     private ImageButton nextButton, prevButton;
 
     private int currentQuestionIndex = 0;
     private List<Question> questionList;
 
+    private int currentScore = 0;
+    private int sharedBestScore = 0;
+
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sharedPreferences = this.getPreferences(MODE_PRIVATE);
+        sharedBestScore = sharedPreferences.getInt(BEST_SCORE, currentScore);
+
+        bestscoreResultText = findViewById(R.id.bestscore_result);
+        bestscoreResultText.setText(String.valueOf(sharedBestScore));
+
+
         counterText = findViewById(R.id.counter_text);
         questionText = findViewById(R.id.question_text);
+
+        currentScoreText = findViewById(R.id.current_score_text);
 
         trueButton = findViewById(R.id.button_true);
         falseButton = findViewById(R.id.button_false);
@@ -58,14 +77,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onPause() {
+        if (currentScore > sharedBestScore) {
+            SharedPreferences.Editor sharedEditor = sharedPreferences.edit();
+            sharedEditor.putInt(BEST_SCORE, currentScore);
+            sharedEditor.apply();
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_true:
                 checkAnswer(true);
+                updateCurrentScoreText();
                 updateQuestionForCard();
                 break;
             case R.id.button_false:
                 checkAnswer(false);
+                updateCurrentScoreText();
                 updateQuestionForCard();
                 break;
             case R.id.button_next:
@@ -89,12 +120,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (realAnswer == userAnswers) {
             toestMessageId = R.string.correct_text;
             fadeCardView();
+            currentScore += CORRECT_ANSWER_PRICE;
         } else {
             toestMessageId = R.string.wrong_text;
             shakeCardView();
+            if (currentScore > 0) {
+                currentScore -= CORRECT_ANSWER_PRICE;
+            }
         }
         Toast.makeText(MainActivity.this, toestMessageId, Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void updateCurrentScoreText() {
+        currentScoreText.setText("Current score: " + currentScore);
     }
 
     private void updateQuestionForCard() {
@@ -117,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 cardView.setCardBackgroundColor(getResources().getColor(R.color.cardview_background));
+                if (currentQuestionIndex < questionList.size() - 1) {
+                    currentQuestionIndex++;
+                }
+                updateQuestionForCard();
             }
 
             @Override
@@ -145,6 +188,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 cardView.setCardBackgroundColor(getResources().getColor(R.color.cardview_background));
+                if (currentQuestionIndex < questionList.size() - 1) {
+                    currentQuestionIndex++;
+                }
+                updateQuestionForCard();
             }
 
             @Override
